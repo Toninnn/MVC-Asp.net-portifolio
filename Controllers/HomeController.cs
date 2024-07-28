@@ -10,14 +10,40 @@ namespace MVC_Asp.net_portifolio.Controllers
 
         public IActionResult Index()
         {
+            HomeModel home = new HomeModel();
+            home.Nome = "Antonio neto";
+            home.Email = "antonio@gmail.com";
+            
+            return View(home);
 
-            return View();
         }
 
         public IActionResult Privacy()
         {
             return View();
         }
+
+        public IActionResult Contato()
+        {
+            return View();
+        }
+
+        public IActionResult Criar()
+        {
+            return View();
+        }
+
+        public IActionResult Editar()
+        {
+            return View();
+        }
+
+        public IActionResult Apagar()
+        {
+            return View();
+        }
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
