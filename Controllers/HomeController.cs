@@ -1,12 +1,17 @@
 using Microsoft.AspNetCore.Mvc;
 using MVC_Asp.net_portifolio.Models;
+using MVC_Asp.net_portifolio.Repositorio;
 using System.Diagnostics;
 
 namespace MVC_Asp.net_portifolio.Controllers
 {
     public class HomeController : Controller
     {
-      
+        private readonly IContatoRepositorio _contatoRepositorio;
+        public HomeController(IContatoRepositorio contatoRepositorio)
+        {
+            _contatoRepositorio = contatoRepositorio;
+        }
 
         public IActionResult Index()
         {
@@ -25,7 +30,9 @@ namespace MVC_Asp.net_portifolio.Controllers
 
         public IActionResult Contato()
         {
-            return View();
+           
+           List<ContatoModel> contatos = _contatoRepositorio.BuscarTodos();
+           return View(contatos);
         }
 
         public IActionResult Criar()
@@ -41,6 +48,12 @@ namespace MVC_Asp.net_portifolio.Controllers
         public IActionResult Apagar()
         {
             return View();
+        }
+        [HttpPost]
+        public IActionResult Criar(ContatoModel contato)
+        {   
+            _contatoRepositorio.Adicionar(contato);
+            return RedirectToAction("Contato");
         }
 
 
