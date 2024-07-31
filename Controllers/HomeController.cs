@@ -40,9 +40,10 @@ namespace MVC_Asp.net_portifolio.Controllers
             return View();
         }
 
-        public IActionResult Editar()
+        public IActionResult Editar(int id)
         {
-            return View();
+          ContatoModel contato = _contatoRepositorio.ListarPorItem(id);
+           return View(contato);
         }
 
         public IActionResult Apagar()
@@ -55,6 +56,13 @@ namespace MVC_Asp.net_portifolio.Controllers
             _contatoRepositorio.Adicionar(contato);
             return RedirectToAction("Contato");
         }
+
+       //[HttpPost]
+       // public IActionResult Alterar(ContatoModel contato)
+      // {
+        //    _contatoRepositorio.Adicionar(contato);
+      //      return RedirectToAction("Contato");
+       // }
 
 
 

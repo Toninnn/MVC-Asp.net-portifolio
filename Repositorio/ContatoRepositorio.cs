@@ -1,5 +1,7 @@
 ﻿using MVC_Asp.net_portifolio.Data;
 using MVC_Asp.net_portifolio.Models;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace MVC_Asp.net_portifolio.Repositorio
 {
@@ -11,6 +13,7 @@ namespace MVC_Asp.net_portifolio.Repositorio
         {
             _bancoContext = bancoContext;
         }
+      
 
         public ContatoModel Adicionar(ContatoModel contato)
         {
@@ -24,5 +27,10 @@ namespace MVC_Asp.net_portifolio.Repositorio
         {
             return _bancoContext.Contatos.ToList();
         }
-    }
+
+		public ContatoModel ListarPorItem(int id)
+		{
+            return _bancoContext.Contatos.FirstOrDefault(x => x.Id == id);
+		}
+	}
 }
